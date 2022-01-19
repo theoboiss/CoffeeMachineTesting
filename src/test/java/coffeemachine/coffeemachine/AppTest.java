@@ -1,9 +1,4 @@
-package test.java.coffeemachine.coffeemachine;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-
-import java.util.List;
+package coffeemachine.coffeemachine;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,8 +1,8 @@
-package main.java.coffeemachine.coffeemachine.controller;
+package coffeemachine.coffeemachine.controller;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
-
-import javax.persistence.*;
 
 //Main function to order a drink, use CheckQuantities
 public class OrderDrink {

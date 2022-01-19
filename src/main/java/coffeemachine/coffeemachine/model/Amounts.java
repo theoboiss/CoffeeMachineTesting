@@ -1,6 +1,7 @@
-package main.java.coffeemachine.coffeemachine.model;
+package coffeemachine.coffeemachine.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Amounts {

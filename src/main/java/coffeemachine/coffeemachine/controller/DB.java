@@ -1,8 +1,8 @@
-package main.java.coffeemachine.coffeemachine.controller;
+package coffeemachine.coffeemachine.controller;
 
-import javax.persistence.*;
+import coffeemachine.coffeemachine.model.*;
 
-import model.*;
+import javax.persistence.EntityManager;
 
 //Insert initial values in the database
 public class DB {

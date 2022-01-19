@@ -1,7 +1,10 @@
-package main.java.coffeemachine.coffeemachine.view;
+package coffeemachine.coffeemachine.view;
 
-import javax.persistence.*;
-import main.java.coffeemachine.coffeemachine.controller.*;
+import coffeemachine.coffeemachine.controller.OrderDrink;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class MainView {
 	
