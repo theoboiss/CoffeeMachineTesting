@@ -8,4 +8,3 @@ coffeemachine\coffeemachine\model\PaperCup.class
 coffeemachine\coffeemachine\view\DrinksView.class
 coffeemachine\coffeemachine\controller\CheckQuantities.class
 coffeemachine\coffeemachine\controller\RegisterOrder.class
-main\java\coffeemachine\coffeemachine\App.class

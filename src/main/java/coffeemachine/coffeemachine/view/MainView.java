@@ -1,10 +1,7 @@
 package coffeemachine.coffeemachine.view;
 
-import coffeemachine.coffeemachine.controller.OrderDrink;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import coffeemachine.coffeemachine.controller.*;
 
 public class MainView {
 	
@@ -12,8 +9,8 @@ public class MainView {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_file");
 		EntityManager em = emf.createEntityManager();
 		
-		//DB controllerDB = new DB();
-		//controllerDB.insertAll(em);
+		DB controllerDB = new DB();
+		controllerDB.insertAll(em);
 		
 		OrderDrink orderDrink = new OrderDrink();
 		orderDrink.showDrinks(em);
