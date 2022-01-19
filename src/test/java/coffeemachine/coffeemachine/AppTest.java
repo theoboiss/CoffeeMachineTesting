@@ -1,8 +1,11 @@
 package coffeemachine.coffeemachine;
 
+import coffeemachine.coffeemachine.controller.DB;
+import coffeemachine.coffeemachine.view.MainView;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import coffeemachine.coffeemachine.*;
 
 /**
  * Unit test for simple App.
@@ -33,6 +36,7 @@ public class AppTest
      */
     public void testApp()
     {
+        MainView.main(null); //ligne inutile
         assertTrue( true );
         /*List mockedList = mock(List.class); //using mock object
         mockedList.add("one"); mockedList.clear(); //verification
