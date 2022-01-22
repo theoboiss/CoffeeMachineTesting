@@ -2,9 +2,8 @@ coffeemachine\coffeemachine\model\Drink.class
 coffeemachine\coffeemachine\view\MainView.class
 coffeemachine\coffeemachine\model\Amounts.class
 coffeemachine\coffeemachine\controller\DB.class
-coffeemachine\coffeemachine\model\Orders.class
 coffeemachine\coffeemachine\controller\OrderDrink.class
+coffeemachine\coffeemachine\model\DrinkOrder.class
 coffeemachine\coffeemachine\model\PaperCup.class
-coffeemachine\coffeemachine\view\DrinksView.class
 coffeemachine\coffeemachine\controller\CheckQuantities.class
 coffeemachine\coffeemachine\controller\RegisterOrder.class

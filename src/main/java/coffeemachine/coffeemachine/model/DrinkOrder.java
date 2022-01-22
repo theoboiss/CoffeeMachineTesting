@@ -1,36 +1,39 @@
 package coffeemachine.coffeemachine.model;
 
-import java.util.Date;
-
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class DrinkOrder {
-
+	
 	//attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int number;
-
+		
 	private Date date;
-
+	
 	@ManyToOne
 	private Drink drink;
-
+	
 	private double size;
-
+	
 	private boolean withPaperCup;
-
+		
 	private double sugar;
-
+	
 	private double price;
-
+	
 	private boolean ordered;
 
-
+	
 	//constructor
+	public DrinkOrder() {
+		super();
+	}
+
 	public DrinkOrder(Date date, Drink drink, double size, boolean withPaperCup, double sugar, double price,
-					  boolean ordered) {
+			boolean ordered) {
 		super();
 		this.date = date;
 		this.drink = drink;

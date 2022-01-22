@@ -1,34 +1,33 @@
 package coffeemachine.coffeemachine.model;
 
-import java.util.List;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Drink {
-
+	
 	//attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int number;
-
+	
 	private String name;
-
+	
 	private String description;
-
+	
 	private double price;
-
+	
 	private int quantity;
-
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "drink")
 	private List<DrinkOrder> orders;
-
-
+	
+	
 	//constructor
 	public Drink() {
 		super();
 	}
-
+	
 	public Drink(String name, String description, double price, int quantity, List<DrinkOrder> orders) {
 		super();
 		this.name = name;
@@ -38,13 +37,13 @@ public class Drink {
 		this.orders = orders;
 	}
 
-
+	
 	//getters and setters
 
 	public int getNumber() {
 		return number;
 	}
-
+	
 
 	public void setNumber(int number) {
 		this.number = number;
@@ -101,7 +100,7 @@ public class Drink {
 	public void setOrders(List<DrinkOrder> orders) {
 		this.orders = orders;
 	}
-
-
+	
+	
 
 }

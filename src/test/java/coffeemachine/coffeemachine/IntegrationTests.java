@@ -1,41 +1,52 @@
 package coffeemachine.coffeemachine;
 
-import coffeemachine.coffeemachine.view.MainView;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Before;
+import org.junit.jupiter.api.*;
+import org.mockito.MockitoAnnotations;
 
 public class IntegrationTests
         extends TestCase
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public IntegrationTests( String testName )
-    {
-        super( testName );
+	@Before
+	public void setUp() {
+	    MockitoAnnotations.initMocks(this);
+	}
+    
+    @BeforeAll
+    static void setup(){
+        System.out.println("@BeforeAll executed");
     }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+     
+    @BeforeEach
+    void setupThis(){
+        System.out.println("@BeforeEach executed");
     }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
+     
+    @Tag("DEV")
+    @Test
+    void testCalcOne()
     {
-        MainView.main(null); //ligne inutile
-        assertTrue( true );
-        /*List mockedList = mock(List.class); //using mock object
-        mockedList.add("one"); mockedList.clear(); //verification
-        verify(mockedList).add("one");
-        verify(mockedList).clear();*/
+        System.out.println("======TEST ONE EXECUTED=======");
+        Assertions.assertEquals( 4 , 2+2);
+    }
+     
+    @Tag("PROD")
+    @Disabled
+    @Test
+    void testCalcTwo()
+    {
+        System.out.println("======TEST TWO EXECUTED=======");
+        Assertions.assertEquals( 6 , 2+4);
+    }
+     
+    @AfterEach
+    void tearThis(){
+        System.out.println("@AfterEach executed");
+    }
+     
+    @AfterAll
+    static void tear(){
+        System.out.println("@AfterAll executed");
     }
 }

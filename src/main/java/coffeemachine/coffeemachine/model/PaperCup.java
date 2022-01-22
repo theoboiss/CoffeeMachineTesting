@@ -1,20 +1,20 @@
 package coffeemachine.coffeemachine.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
-
-import javax.persistence.*;
 
 @Entity
 public class PaperCup {
 
 	@Id
 	private double size;
-
+	
 	private double price;
-
+	
 	private int quantity;
 
-
+	
 	//constructor
 	public PaperCup(double size, double price, int quantity, List<DrinkOrder> orders) {
 		super();
@@ -52,6 +52,6 @@ public class PaperCup {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-
+	
+	
 }

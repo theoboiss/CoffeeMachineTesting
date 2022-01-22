@@ -36,7 +36,7 @@ public class AppTest
      */
     public void testApp()
     {
-        MainView.main(null); //ligne inutile
+        //MainView.main(null); //ligne inutile
         assertTrue( true );
         /*List mockedList = mock(List.class); //using mock object
         mockedList.add("one"); mockedList.clear(); //verification
