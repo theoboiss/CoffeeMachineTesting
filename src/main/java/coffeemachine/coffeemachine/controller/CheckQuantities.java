@@ -10,8 +10,8 @@ import java.util.List;
 //Check quantities to know if you may order
 public class CheckQuantities {
 	
-	public boolean checkDrinkQuantities(EntityManager em, int drink_id) {
-		Drink drink = em.find(Drink.class, drink_id);
+	public boolean checkDrinkQuantities(int drink_id) {
+		Drink drink = DB.em.find(Drink.class, drink_id);
 		if (drink.getQuantity() > 0) {
 			return true;
 		}
@@ -26,33 +26,33 @@ public class CheckQuantities {
 		return false;
 	}
 	
-	public boolean checkPaperCupQuantities(EntityManager em, double size) {
-		PaperCup paperCup = em.find(PaperCup.class, size);
+	public boolean checkPaperCupQuantities(double size) {
+		PaperCup paperCup = DB.em.find(PaperCup.class, size);
 		if (paperCup.getQuantity() > 0) {
 			return true;
 		}
 		return false;		
 	}
 	
-	public boolean checkSugarQuantities(EntityManager em, int quantity) {
-		Amounts amounts = em.find(Amounts.class, 1);
+	public boolean checkSugarQuantities(int quantity) {
+		Amounts amounts = DB.em.find(Amounts.class, 1);
 		if (amounts.getSugar() > quantity*0.005) {
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean checkQuantitiesRequiredToOrder(EntityManager em) {
-		Query query = em.createQuery("from Drink d where d.quantity > 0");
+	public boolean checkQuantitiesRequiredToOrder() {
+		Query query = DB.em.createQuery("from Drink d where d.quantity > 0");
 		List<Drink> drinksAvailable = query.getResultList();
 		if(drinksAvailable.isEmpty()) {
 			return false;
 		}
-		query = em.createQuery("from PaperCup");
+		query = DB.em.createQuery("from PaperCup");
 		List<PaperCup> paperCups = query.getResultList();
 		List<PaperCup> sizesAvailable = new ArrayList<PaperCup>();
 		for(int i = 0; i < paperCups.size(); i++) {
-			if(this.checkWaterQuantities(em, paperCups.get(i).getSize())) {
+			if(this.checkWaterQuantities(DB.em, paperCups.get(i).getSize())) {
 				sizesAvailable.add(paperCups.get(i));
 			}
 		}

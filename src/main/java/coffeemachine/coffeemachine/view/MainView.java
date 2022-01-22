@@ -15,7 +15,7 @@ public class MainView {
 	
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence_file");
-		EntityManager em = emf.createEntityManager();
+		emf.createEntityManager();
 		
 		//To insert data in the DB
 		//DB controllerDB = new DB();
@@ -38,14 +38,14 @@ public class MainView {
 			
 			
 			//No stock
-			if(!checkQtt.checkQuantitiesRequiredToOrder(em)) {
+			if(!checkQtt.checkQuantitiesRequiredToOrder()) {
 				System.out.println("No stock available");
 				break;
 			}
 			
 			
 			//Display drinks available
-			List<Drink> drinksAvailable = orderDrink.getDrinks(em);
+			List<Drink> drinksAvailable = orderDrink.getDrinks();
 			for(int i = 0; i < drinksAvailable.size(); i++) {
 				System.out.println(drinksAvailable.get(i).getNumber() + 
 						" | " + drinksAvailable.get(i).getName() + 
@@ -66,7 +66,7 @@ public class MainView {
 			List<PaperCup> paperCups = new ArrayList<PaperCup>();
 			if(takePaperCup.equals("y")) {
 				paperCupSelected = true;
-				paperCups = orderDrink.getPaperCupAvailable(em);
+				paperCups = orderDrink.getPaperCupAvailable();
 				if(paperCups.isEmpty()) {
 					System.out.println("Sorry paper cup is out of stock");
 					continue;
@@ -77,7 +77,7 @@ public class MainView {
 				}
 			} else {
 				takePaperCup = "n";
-				paperCups = orderDrink.getSizes(em);
+				paperCups = orderDrink.getSizes();
 				for(int i = 0; i < paperCups.size(); i++) {
 					System.out.println("Size : " +  paperCups.get(i).getSize());
 				}
@@ -93,10 +93,10 @@ public class MainView {
 			
 		
 			//choose sugar
-			int sugarDoseAvailable = orderDrink.getSugarDoses(em, sugarDosesMax);
+			int sugarDoseAvailable = orderDrink.getSugarDoses(sugarDosesMax);
 			System.out.println("How many sugar do you want ?\n" + 
 					"select from 0 to " + sugarDoseAvailable );
-			int sugarDoseSelected = orderDrink.chooseSugar(em, sc);
+			int sugarDoseSelected = orderDrink.chooseSugar(sc);
 		
 			
 			//complete order recap
@@ -111,17 +111,17 @@ public class MainView {
 			if(ordered.equals("y")) {
 				confirmOrder = true;
 				//update quantities
-				registerOrder.updateDrink(em, drink.getNumber());
-				registerOrder.updateSugar(em, sugarDoseSelected);
-				registerOrder.updateWater(em, paperCup.getSize());
+				registerOrder.updateDrink(drink.getNumber());
+				registerOrder.updateSugar(sugarDoseSelected);
+				registerOrder.updateWater(paperCup.getSize());
 				if (paperCupSelected) {
-					registerOrder.updatePaperCup(em, paperCup.getSize());
+					registerOrder.updatePaperCup(paperCup.getSize());
 				}
 			}
 			
 	
 			//register order
-			registerOrder.main(em, drink, paperCup.getSize(), paperCupSelected, sugarDoseSelected, price, confirmOrder);			
+			registerOrder.main(drink, paperCup.getSize(), paperCupSelected, sugarDoseSelected, price, confirmOrder);
 			
 
 		}		

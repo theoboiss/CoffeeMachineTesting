@@ -6,6 +6,9 @@ import javax.persistence.EntityManager;
 
 //Insert initial values in the database
 public class DB {
+
+	public static EntityManager em;
+
 	
 	public void insertAll(EntityManager em) {
 		insertDrinks(em);
@@ -45,5 +48,14 @@ public class DB {
 		em.persist(amout);
 		em.getTransaction().commit();
 	}
-	
+
+
+	public static EntityManager getEm() {
+		return em;
+	}
+
+	public static void setEm(EntityManager em) {
+		DB.em = em;
+	}
+
 }

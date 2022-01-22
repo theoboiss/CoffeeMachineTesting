@@ -45,7 +45,7 @@ public class DrinkTest
         OrderDrink dao = Mockito.mock(OrderDrink.class);
 
         List<Drink> listDrinks = Arrays.asList(drink, drink2);
-        Mockito.when(dao.getDrinks(em)).thenReturn(listDrinks);
+        Mockito.when(dao.getDrinks()).thenReturn(listDrinks);
 
         Assertions.assertEquals(2, listDrinks.size());
     }

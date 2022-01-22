@@ -11,44 +11,44 @@ import java.util.Date;
 //To register all the orders made completely
 public class RegisterOrder {
 	
-	public void main(EntityManager em, Drink drink, double size, boolean withPaperCup, double sugar, double price, boolean ordered) {
+	public void main(Drink drink, double size, boolean withPaperCup, double sugar, double price, boolean ordered) {
 		Date orderDate = new Date();
-		em.getTransaction().begin();
+		DB.em.getTransaction().begin();
 		DrinkOrder order = new DrinkOrder(orderDate, drink, size, withPaperCup, sugar, price, ordered);
-		em.persist(order);
-		em.getTransaction().commit();		
+		DB.em.persist(order);
+		DB.em.getTransaction().commit();
 	}
 	
-	public void updateSugar(EntityManager em, int sugarQtt) {
-		em.getTransaction().begin();
-		Amounts amounts = em.find(Amounts.class, 1);
+	public void updateSugar(int sugarQtt) {
+		DB.em.getTransaction().begin();
+		Amounts amounts = DB.em.find(Amounts.class, 1);
 		amounts.setSugar(amounts.getSugar() - sugarQtt*0.005);
-		em.persist(amounts);
-		em.getTransaction().commit();
+		DB.em.persist(amounts);
+		DB.em.getTransaction().commit();
 	}
 	
-	public void updateWater(EntityManager em, double waterQtt) {
-		em.getTransaction().begin();
-		Amounts amounts = em.find(Amounts.class, 1);
+	public void updateWater(double waterQtt) {
+		DB.em.getTransaction().begin();
+		Amounts amounts = DB.em.find(Amounts.class, 1);
 		amounts.setWater(amounts.getWater() - waterQtt);
-		em.persist(amounts);
-		em.getTransaction().commit();
+		DB.em.persist(amounts);
+		DB.em.getTransaction().commit();
 	}
 	
-	public void updateDrink(EntityManager em, int drink_id) {
-		em.getTransaction().begin();
-		Drink drink = em.find(Drink.class, drink_id);
+	public void updateDrink(int drink_id) {
+		DB.em.getTransaction().begin();
+		Drink drink = DB.em.find(Drink.class, drink_id);
 		drink.setQuantity(drink.getQuantity() - 1);
-		em.persist(drink);
-		em.getTransaction().commit();
+		DB.em.persist(drink);
+		DB.em.getTransaction().commit();
 	}
 	
-	public void updatePaperCup(EntityManager em, double size) {
-		em.getTransaction().begin();
-		PaperCup paperCup = em.find(PaperCup.class, size);
+	public void updatePaperCup(double size) {
+		DB.em.getTransaction().begin();
+		PaperCup paperCup = DB.em.find(PaperCup.class, size);
 		paperCup.setQuantity(paperCup.getQuantity()-1);
-		em.persist(paperCup);
-		em.getTransaction().commit();
+		DB.em.persist(paperCup);
+		DB.em.getTransaction().commit();
 	}
 
 }

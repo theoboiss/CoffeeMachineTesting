@@ -12,8 +12,8 @@ import java.util.Scanner;
 //Main function to order a drink, use CheckQuantities
 public class OrderDrink {
 	
-	public List<Drink> getDrinks(EntityManager em) {
-		Query query = em.createQuery("from Drink d where d.quantity > 0");
+	public List<Drink> getDrinks() {
+		Query query = DB.em.createQuery("from Drink d where d.quantity > 0");
 		List<Drink> drinksAvailable = query.getResultList();
 		return drinksAvailable;		
 	}
@@ -38,25 +38,25 @@ public class OrderDrink {
 		return drink;
 	}
 	
-	public List<PaperCup> getSizes(EntityManager em) {
+	public List<PaperCup> getSizes() {
 		CheckQuantities checkQtt = new CheckQuantities();
-		Query query = em.createQuery("from PaperCup");
+		Query query = DB.em.createQuery("from PaperCup");
 		List<PaperCup> paperCups = query.getResultList();
 		List<PaperCup> sizesAvailable = new ArrayList<PaperCup>();
 		for(int i = 0; i < paperCups.size(); i++) {
-			if(checkQtt.checkWaterQuantities(em, paperCups.get(i).getSize())) {
+			if(checkQtt.checkWaterQuantities(DB.em, paperCups.get(i).getSize())) {
 				sizesAvailable.add(paperCups.get(i));
 			}
 		}
 		return sizesAvailable;
 	}
 	
-	public List<PaperCup> getPaperCupAvailable(EntityManager em) {
+	public List<PaperCup> getPaperCupAvailable() {
 		CheckQuantities checkQtt = new CheckQuantities();
-		List<PaperCup> sizesAvailable = this.getSizes(em);
+		List<PaperCup> sizesAvailable = this.getSizes();
 		List<PaperCup> paperCupsAvailable = new ArrayList<PaperCup>();
 		for(int i = 0; i < sizesAvailable.size(); i++) {
-			if(checkQtt.checkPaperCupQuantities(em, sizesAvailable.get(i).getSize())) {
+			if(checkQtt.checkPaperCupQuantities(sizesAvailable.get(i).getSize())) {
 				paperCupsAvailable.add(sizesAvailable.get(i));
 			}
 		}
@@ -76,17 +76,17 @@ public class OrderDrink {
 		return paperCup;
 	}
 	
-	public int getSugarDoses(EntityManager em, int sugarDoseMax) {
+	public int getSugarDoses(int sugarDoseMax) {
 		CheckQuantities checkQtt = new CheckQuantities();
 		for(int i = sugarDoseMax; i > 0; i--) {
-			if(checkQtt.checkSugarQuantities(em, i)) {
+			if(checkQtt.checkSugarQuantities(i)) {
 				return i;
 			}
 		}
 		return 0;
 	}
 	
-	public int chooseSugar(EntityManager em, Scanner sc) {
+	public int chooseSugar(Scanner sc) {
 		int sugarQtt = sc.nextInt();
 		while ( 5 < sugarQtt || sugarQtt < 0 ) {
 			System.out.println("Please enter a valid value : ");
